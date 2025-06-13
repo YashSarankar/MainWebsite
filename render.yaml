@@ -2,7 +2,7 @@ services:
   - type: web
     name: sarankar-developers
     env: java
-    buildCommand: ./mvnw clean package -DskipTests
+    buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/SarankarDeveloperWebsite-0.0.1-SNAPSHOT.jar
     envVars:
       - key: MONGODB_URI
@@ -24,4 +24,11 @@ services:
     disk:
       name: uploads
       mountPath: /uploads
-      sizeGB: 1 
+      sizeGB: 1
+    buildFilter:
+      paths:
+        - pom.xml
+        - src/**
+    envVars:
+      - key: JAVA_VERSION
+        value: 17 
