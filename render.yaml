@@ -3,8 +3,10 @@ services:
     name: sarankar-developer-website
     env: docker
     plan: free
-    dockerfilePath: ./Dockerfile
+    dockerfilePath: Dockerfile
     dockerContext: .
+    buildCommand: docker build -t sarankar-developer-website .
+    startCommand: docker run -p $PORT:8080 sarankar-developer-website
     buildFilter:
       paths:
         - Dockerfile
@@ -26,6 +28,8 @@ services:
         value: true
       - key: ALLOWED_ORIGINS
         value: https://sarankardevelopers.com
+      - key: DOCKER_BUILDKIT
+        value: "1"
     disk:
       name: uploads
       mountPath: /uploads

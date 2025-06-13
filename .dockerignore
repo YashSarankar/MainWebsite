@@ -1,0 +1,9 @@
+.git
+.gitignore
+.vscode
+target
+uploads
+*.md
+!README.md
+.env
+*.log 
