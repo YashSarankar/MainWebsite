@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: sarankar-developers
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/SarankarDeveloperWebsite-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: PORT
+        value: 8081
+      - key: LOG_LEVEL
+        value: INFO
+      - key: THYMELEAF_CACHE
+        value: true
+      - key: COOKIE_SECURE
+        value: true
+      - key: SSL_ENABLED
+        value: true
+      - key: ALLOWED_ORIGINS
+        value: https://sarankardevelopers.com
+    healthCheckPath: /api/test/mongodb-connection
+    autoDeploy: true
+    disk:
+      name: uploads
+      mountPath: /uploads
+      sizeGB: 1 
